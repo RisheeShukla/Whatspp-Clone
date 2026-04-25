@@ -1,0 +1,19 @@
+import {  useEffect } from "react";
+
+const useOutsideClick=(ref,callback)=>{
+    useEffect(()=>{
+        const handleoutsideclick=(event)=>{
+            if(ref.current && !ref.current.contains(event.target))
+            {
+               callback();
+            } 
+        
+        }
+         document.removeEventListener('mousedown',handleoutsideclick)
+         return ()=>{
+            document.removeEventListener('mousedown',handleoutsideclick)
+         
+         }
+    },[ref,callback])
+}
+export default useOutsideClick;
