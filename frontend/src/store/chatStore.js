@@ -1,6 +1,5 @@
 import {create} from 'zustand'
 import { getSocket } from '../services/chat.service';
-import { reach } from 'yup';
 import axiosInstance from '../services/url.service';
 
 export const useChatStore=create((set,get)=>({
@@ -184,8 +183,7 @@ set({ conversation: data });
     const content=formData.get('content');
     const messageStatus=formData.get('messageStatus');
     set({loading:true,error:null})
-    const socket=getSocket();
-  const {conversation}=get();
+    const {conversation}=get();
    let conversationId=null;
    if(conversation.length>0)
    {
@@ -308,7 +306,7 @@ markMessagesAsRead:async()=>{
         return 
     }
     try{
-        const response=await axiosInstance.put('/chat/messages/mark-as-read',{
+        await axiosInstance.put('/chat/messages/mark-as-read',{
             messageIds:unreadIds
         })
         set((state)=>({

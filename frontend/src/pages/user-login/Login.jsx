@@ -13,7 +13,7 @@ import { motion } from 'framer-motion'
 import { FaArrowLeft, FaChevronDown, FaPlus, FaUser, FaWhatsapp } from 'react-icons/fa'
 import Spinner from '../../utils/Spinner';
 import { sendOtp, updateUserProfile, verifyOtp } from '../../services/user.service';
-import {ToastContainer,toast} from 'react-toastify'
+import {toast} from 'react-toastify'
 
 const loginValidationSchema = yup.object().shape({
     phoneNumber: yup.string().nullable().notRequired().matches(/^\d+$/, 'Phone number must be digit').transform((value, originalValue) =>
@@ -40,7 +40,7 @@ const profileValidationSchema = yup.object().shape({
 
 const Login = () => {
     const { step, setStep, userPhoneData, setUserPhoneData, resetLoginStore } = useLoginStore();
-    const { theme, setTheme } = useThemeStore();
+    const { theme } = useThemeStore();
     const [phoneNumber, setPhoneNumber] = useState('');
     const [selectCountry, setSelectCountry] = useState(countries[0]);
     const [otp, setOpt] = useState(["", "", "", "", "", ""])
@@ -496,8 +496,8 @@ const handleBack=()=>{
                         />
                       <label
                       className={`text-sm ${theme==='dark'?"text-gray-300":"text-gray-700"}`}>
-                      I agree to the {" "}
-                      <a href="#" className='text-red-500 hover:underlined'>
+                      I agree to the{" "}
+                      <a href="#!" className='text-red-500 hover:underlined'>
                         Terms and Conditions
                       </a>
                         </label>  

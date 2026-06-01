@@ -1,12 +1,10 @@
-import { shallow } from "zustand/shallow";
-
 import React from "react";
 import {  useEffect, useRef, useState } from "react";
 import useUserStore from "../../store/useUserStore";
 import useThemeStore from "../../store/themeStore";
 import { useChatStore } from "../../store/chatStore";
 import { isToday, isYesterday, format } from 'date-fns'
-import { FaWhatsapp, FaLaptop, FaLock, FaArrowLeft, FaEllipsisV, FaTimes, FaPaperclip, FaImage, FaFile, FaPaperPlane,FaSmile,FaVideo } from "react-icons/fa";
+import { FaLaptop, FaLock, FaArrowLeft, FaEllipsisV, FaTimes, FaPaperclip, FaImage, FaFile, FaPaperPlane,FaSmile,FaVideo } from "react-icons/fa";
 import MessageBubble from "./MessageBubble";
 import EmojiPicker from 'emoji-picker-react'
 const isValidate = (date) => {
