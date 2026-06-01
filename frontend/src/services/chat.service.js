@@ -2,16 +2,16 @@ import {io} from 'socket.io-client'
 import useUserStore from '../store/useUserStore';
 
 let socket=null;
-const Token=localStorage.getItem('auth_token');
 
 export const initializeSocket=(currentUserData)=>{
     if(socket)
     {
         return socket;
     }
+    const token=localStorage.getItem('auth_token');
     const BACKEND_URL =process.env.REACT_APP_API_URL || "http://localhost:8000";
     socket=io(BACKEND_URL,{
-        auth:{Token},
+        auth:{token},
         transports:['websocket','polling'],
         reconnectionAttempts:5,
         reconnectionDelay:1000

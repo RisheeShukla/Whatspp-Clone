@@ -181,7 +181,7 @@ const Login = () => {
         }
     }
     const handleChange=(e)=>{
-        const file=e.traget.files[0];
+        const file=e.target.files[0];
         if(file)
         {
             setProfilePictureFile(file)

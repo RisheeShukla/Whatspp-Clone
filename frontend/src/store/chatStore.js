@@ -189,7 +189,7 @@ set({ conversation: data });
    let conversationId=null;
    if(conversation.length>0)
    {
-    const newconversation=conversation.find((conv)=>conv.participants.some((p)=>p._id===receiverId) && conv.participants.some((p)=>p._id===receiverId))
+    const newconversation=conversation.find((conv)=>conv.participants.some((p)=>p._id===senderId) && conv.participants.some((p)=>p._id===receiverId))
        if(newconversation)
        {
         conversationId=newconversation._id;
