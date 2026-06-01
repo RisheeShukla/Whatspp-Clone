@@ -15,7 +15,6 @@ const StatusPreview = ({contact,
 loading}) => {
 
     const [progess,setProgess]=useState(0);
-    const [shewViewers,setShewViewers]=useState(false);
     const currentStatus = contact.statuses[currentIndex];
     const isOwner=contact.id===currentUser._id;
 useEffect(()=>{
@@ -36,12 +35,7 @@ useEffect(()=>{
     }
 
 
-},[currentIndex])
-
- const handleViewToggle=()=>{
-    setShewViewers(!shewViewers);
-
-}
+},[currentIndex, onNext])
 
 const handleDeleteStatus=()=>{
     if(onDelete && currentUser?._id)
@@ -127,14 +121,13 @@ if(!currentStatus)
                                     currentStatus.contentType==='image'?(
                                         <img
                                         src={currentStatus.content}
-                                        alt="image"
+                                        alt="Status"
                                         className="max-w-full max-h-full object-contain "
                                         />             
 
                                 ): currentStatus.contentType==='video' ?(
                                     <video
                                     src={currentStatus.content}
-                                    alt="image-video"
                                     className="max-w-full max-h-full object-contain "
                                     controls
                                     muted

@@ -4,7 +4,7 @@ import Layout from "../../components/Layout";
 import useThemeStore from "../../store/themeStore";
 import { logoutUser } from "../../services/user.service";
 import useUserStore from "../../store/useUserStore";
-import {ToastContainer,toast} from 'react-toastify'
+import {toast} from 'react-toastify'
 import { FaComment, FaMoon, FaQuestionCircle, FaSearch, FaSignInAlt, FaSun, FaUser } from "react-icons/fa";
 
 

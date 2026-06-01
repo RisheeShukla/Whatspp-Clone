@@ -25,13 +25,13 @@ const ChatWindow = ({ selectedContact, setSelectedContact }) => {
     const { user } = useUserStore();
     const messages = useChatStore((s) => s.messages);
 const conversation = useChatStore((s) => s.conversation);
-const loading = useChatStore((s) => s.loading);
 const sendMessage = useChatStore((s) => s.sendMessage);
 const addReaction = useChatStore((s) => s.addReaction);
 const deleteMessage = useChatStore((s) => s.deleteMessage);
 const fetchMessages = useChatStore((s) => s.fetchMessages);
 const fetchConversations = useChatStore((s) => s.fetchConversations);
-const cleanup = useChatStore((s) => s.cleanup);
+const startTyping = useChatStore((s) => s.startTyping);
+const stopTyping = useChatStore((s) => s.stopTyping);
 
     //get online status and last seen
     const online = useChatStore().isUserOnline(selectedContact?._id);
@@ -53,7 +53,7 @@ const cleanup = useChatStore((s) => s.cleanup);
     useEffect(() => {
         fetchConversations();
     
-    }, [])
+    }, [fetchConversations])
 
     const scrollToBottom = () => {
         messageEndRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -65,12 +65,12 @@ const cleanup = useChatStore((s) => s.cleanup);
 
     useEffect(() => {
         if (message && selectedContact) {
-            useChatStore.getState().startTyping(selectedContact._id)
+            startTyping(selectedContact._id)
             if (typingTimeOutRef.current) {
                 clearTimeout(typingTimeOutRef.current);
             }
             typingTimeOutRef.current = setTimeout(() => {
-                 useChatStore.getState().stopTyping(selectedContact._id)
+                 stopTyping(selectedContact._id)
             }, 3000)
 
         }
@@ -79,7 +79,7 @@ const cleanup = useChatStore((s) => s.cleanup);
                 clearTimeout(typingTimeOutRef.current);
             }
         }
-    }, [message, selectedContact,  useChatStore.getState().startTyping,  useChatStore.getState().stopTyping])
+    }, [message, selectedContact, startTyping, stopTyping])
 
 
     const handleFileChange = (e) => {

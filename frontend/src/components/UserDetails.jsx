@@ -3,12 +3,10 @@ import { useEffect } from "react";
 import Layout from "./Layout";
 import useUserStore from "../store/useUserStore";
 import useThemeStore from "../store/themeStore";
-import { Form } from "react-router-dom";
 import { updateUserProfile } from "../services/user.service";
 import { toast } from "react-toastify"
-import { motion } from "framer-motion";import { FaCamera, FaCheck, FaCheckCircle, FaPencilAlt,FaSmile } from "react-icons/fa";
-import Loader from "../utils/Loader";
-import { MdCancel, MdFrontLoader } from "react-icons/md";
+import { motion } from "framer-motion";import { FaCamera, FaCheck, FaPencilAlt,FaSmile } from "react-icons/fa";
+import { MdCancel } from "react-icons/md";
 import EmojiPicker from "emoji-picker-react";
 
 

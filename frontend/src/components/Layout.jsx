@@ -1,4 +1,3 @@
-import { useLocation } from "react-router-dom";
 import useLayoutStore from "../store/layoutStore";
 import useThemeStore from "../store/themeStore";
 import { useState } from "react";
@@ -10,7 +9,6 @@ import ChatWindow from "../pages/chatSection/ChatWindow";
 const Layout=({children,isThemeDialogOpen,toggleThemeDialog,isStatusPreview,statusPreviewContent})=>{
     const selectedContact=useLayoutStore(state=>state.selectedContact);
     const setSelectedContact=useLayoutStore(state=>state.setSelectedContact);
-const location=useLocation();
   const [isMobile,setIsMobile]=useState(window.innerWidth<768)
   const theme=useThemeStore(state=>state.theme);
   const setTheme=useThemeStore(state=>state.setTheme)

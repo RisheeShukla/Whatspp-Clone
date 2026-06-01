@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import useThemeStore from "../../store/themeStore";
 import useStatusStore from "../../store/useStatusStore";
-import { set } from "date-fns";
 import Layout from "../../components/Layout";
 import StatusPreview from "./StatusPreview";
 import { motion } from "framer-motion";
 import { RxCross2 } from "react-icons/rx";
 import useUserStore from "../../store/useUserStore";
-import { FaCamera, FaEllipsisH, FaPlus, FaTimes } from "react-icons/fa";
+import { FaCamera, FaEllipsisH, FaPlus } from "react-icons/fa";
 import formatTimestamp from "../../utils/formatTime";
 import StatusList from "./StatusList";
 
@@ -24,8 +23,8 @@ const Status = () => {
     const [filePreview, setFilePreview] = useState(null);
     const { theme } = useThemeStore();
     const { user } = useUserStore();
-    const { statuses, loading, error, fetchStatuses, createStatus, viewStatus, deleteStatus, getStatusViewers,
-        getUserStatuses, getOtherStatuses, clearError, reset, initializeSocket, cleanupSocket } = useStatusStore();
+    const { statuses, loading, error, fetchStatuses, createStatus, viewStatus, deleteStatus,
+        getUserStatuses, getOtherStatuses, clearError, initializeSocket, cleanupSocket } = useStatusStore();
 
     const userStatus = getUserStatuses(user?._id);
     const otherStatus = getOtherStatuses(user?._id);
@@ -36,7 +35,7 @@ const Status = () => {
             cleanupSocket();
         }
 
-    }, [user?._id])
+    }, [user?._id, fetchStatuses, initializeSocket, cleanupSocket])
     useEffect(()=>{
         statuses.forEach(status=>{
             if(status.expiresAt && new Date(status.expiresAt)<new Date())
@@ -44,13 +43,13 @@ const Status = () => {
                 deleteStatus(status.id);
             }
         })
-    },[statuses])
+    },[statuses, deleteStatus])
 
     useEffect(() => {
         return () => {
             clearError();
         }
-    }, [])
+    }, [clearError])
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
