@@ -150,7 +150,7 @@ const stopTyping = useChatStore((s) => s.stopTyping);
             )
     }
     //Group messaging...........
-    const groupedMessages = Array.isArray(messages) && messages.reduce((acc, message) => {
+    const groupedMessages = (Array.isArray(messages) && messages.reduce((acc, message) => {
         if (!message.createdAt)
             return acc;
         const date = new Date(message.createdAt)
@@ -171,7 +171,7 @@ const stopTyping = useChatStore((s) => s.stopTyping);
 
 
 
-    }, {}) || {};
+    }, {})) || {};
     const handleReaction = (messageId, emoji) => {
         addReaction(messageId, emoji);
 
