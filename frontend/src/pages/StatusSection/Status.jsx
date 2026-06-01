@@ -22,7 +22,7 @@ const Status = () => {
     const [showCreateModel, setShowCreateModel] = useState(false);
     const [newStatus, setNewStatus] = useState('');
     const [filePreview, setFilePreview] = useState(null);
-    const { theme } = useThemeStore((state) => state.theme)
+    const { theme } = useThemeStore();
     const { user } = useUserStore();
     const { statuses, loading, error, fetchStatuses, createStatus, viewStatus, deleteStatus, getStatusViewers,
         getUserStatuses, getOtherStatuses, clearError, reset, initializeSocket, cleanupSocket } = useStatusStore();
@@ -171,7 +171,7 @@ const Status = () => {
                 className={`flex-1 h-screen border-r ${theme === 'dark' ? 'bg-[rgb(12,19,24)] text-white border-gray-600' : 'bg-gray-100 text-black'}`}
             >
                 <div
-                    className={`flex justify-between items-center shadow-md   ${theme === 'dark' ? 'bg-[rgb(17,27,33)]' : 'bg-white '} p-4`}
+                    className={`flex justify-between items-center shadow-md   ${theme === 'dark' ? 'bg-black' : 'bg-white '} p-4`}
                 >
                     <h2 className="text-2xl font-bold">
                         Status
