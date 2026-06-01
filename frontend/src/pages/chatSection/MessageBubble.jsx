@@ -20,9 +20,8 @@ const MessageBubble = ({ message, theme, currentUser, onReact, deleteMessage }) 
     const emojiPickerRef = useRef(null);
     const reactionMenuRef = useRef(null);
     const isUserMessage = message.sender._id === currentUser?._id;
-    const bubbleClass = isUserMessage ? 'chat-end' : 'chat-start'
-    const bubbleContent = isUserMessage ? `chat-bubble md:max-w-[50%] min-w-[130px] ${theme === 'dark' ? 'bg-green-300 text-white' : "bg-green-200 text-black"}` :
-        `chat-bubble md:max-w-[50%] min-w-[130px] ${theme === 'dark' ? 'bg-white text-black' : "bg-white text-black"}`;
+    
+
     const handleReact = (emoji) => {
         onReact(message?._id, emoji);
         setShowEmojiPicker(false)
@@ -50,8 +49,9 @@ const MessageBubble = ({ message, theme, currentUser, onReact, deleteMessage }) 
     if (message === 0)
         return;
     return (
-        <div className={`chat ${bubbleClass}`}>
-            <div className={`${bubbleContent} relative group mt-4`}
+        <div className={`chat ${isUserMessage ? 'chat-end' : 'chat-start'}`}>
+            <div className={`${isUserMessage ? `chat-bubble md:max-w-[50%] min-w-[130px] ${theme === 'dark' ? 'bg-green-300 text-white' : "bg-green-200 text-black"}` :
+        `chat-bubble md:max-w-[50%] min-w-[130px] ${theme === 'dark' ? 'bg-white text-black' : "bg-white text-black"}`} relative group mt-4`}
                 ref={messageRef}>
                 <div className="flex justify-center gap-2">
                     {message.contentType === 'text' && <p className="mr-2">
