@@ -42,7 +42,6 @@ const stopTyping = useChatStore((s) => s.stopTyping);
         if (selectedContact?._id && conversation?.length > 0) {
 
             const conversations = conversation.find((conv) => conv.participants.some((participant) => participant._id === selectedContact?._id))
-            console.log(conversations)
             if (conversations._id) {
                 fetchMessages(conversations._id);
             }
