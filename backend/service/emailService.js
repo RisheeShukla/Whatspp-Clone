@@ -3,14 +3,17 @@ const dotenv=require('dotenv');
 dotenv.config();
 
 const transporter = nodemailer.createTransport({
-  service:"gmail",
+  host: process.env.BREVO_HOST,
+  port: Number(process.env.BREVO_PORT),
+  secure: false,
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
+    user: process.env.BREVO_USER,
+    pass: process.env.BREVO_PASS,
   },
-  connectionTimeout: 60000, 
-  greetingTimeout: 60000,  
-  socketTimeout: 60000,    
+
+  connectionTimeout: 30000,
+  greetingTimeout: 30000,
+  socketTimeout: 30000,
 });
 
 
@@ -35,7 +38,7 @@ const sendOtpToEmail=async(email,otp)=>{
     <p className="text-gray-600">If you did not request this OTP, please ignore this email.</p>
     `
     await transporter.sendMail({
-        from:`whatsapp web < ${process.env.EMAIL_USER}`,
+        from:`RRR< ${process.env.EMAIL_USER}`,
         to:email,
         subject:'Your OTP for WhatsApp Clone',
         html:htmlContent
