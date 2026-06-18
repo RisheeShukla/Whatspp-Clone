@@ -17,21 +17,6 @@ const transporter = nodemailer.createTransport({
 });
 
 
-transporter.verify((error,success)=>{
-
-    if(error)
-    {
-        console.log('Gmail coonection failed',error);
-    }
-    else
-    {
-        console.log('Gmail configured successfully')
-    }
-
-
-
-})
-
 const sendOtpToEmail=async(email,otp)=>{
     const htmlContent=`<h1 >Your OTP is:<strong className="text-blue-500 bg-blue-100 p-2 rounded-md"> ${otp} </strong></h1>
     <p className="text-red-500 text-lg">This OTP is valid for 5 minutes.</p>
